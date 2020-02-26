@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.neha.lenskartimdb.viewmodel.ImdbMovieViewModel" />
+
+        <variable
+            name="myAdapter"
+            type="com.neha.lenskartimdb.view.RecyclerviewAdapter" />
+
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_5dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:visibility="@{viewmodel.loading}"
+                    android:orientation="vertical">
+                    <androidx.core.widget.ContentLoadingProgressBar
+                        style="?android:attr/progressBarStyleLarge"
+                        android:id="@+id/spinnerLoading"
+                        android:indeterminate="true"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:visibility="@{viewmodel.loading}"
+                        android:layout_gravity="center"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="@{viewmodel.showEmpty}"
+                        android:text="@string/no_movies_found"/>
+                </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adapter="@{myAdapter}"
+                        android:visibility="@{viewmodel.showRecyclerView}"
+                        android:orientation="horizontal"
+                        android:id="@+id/recyclerview"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

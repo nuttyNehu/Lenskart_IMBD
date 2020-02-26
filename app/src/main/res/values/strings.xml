@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Lenskart Imdb</string>
+    <string name="no_movies_found">No movies found</string>
+</resources>
